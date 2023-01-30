@@ -1,5 +1,7 @@
 import torch
 import numpy as np
+from skimage import metrics
+from sewar import full_ref as fr
 
 
 def convert_rgb_to_y(img):
@@ -50,6 +52,34 @@ def convert_ycbcr_to_rgb(img):
 def calc_psnr(img1, img2):
     return 10. * torch.log10(1. / torch.mean((img1 - img2) ** 2))
 
+
+def calc_ssim(img1, img2):
+    img1_np = img1.detach().cpu().numpy()
+    img2_np = img2.detach().cpu().numpy()
+    return metrics.structural_similarity(img1_np[0][0], img2_np[0][0])
+
+
+def calc_ergas(img1, img2, r=2):
+    img1_np = img1.detach().cpu().numpy()
+    img2_np = img2.detach().cpu().numpy()
+
+    t = []
+    for i in range (0, img1_np.shape[1]):
+        rmse = fr.rmse(img1_np[:,i,:,:], img2_np[:,i,:,:])
+        mean_org = np.mean(img1_np[:,i,:,:])
+        d = rmse**2 / mean_org**2
+        t.append(d)
+        suma = (sum(t))
+    ergas = 100 * 1/r * (1/img1_np.shape[1] * suma)**(1/2)
+    return ergas
+
+def calc_scc(img1, img2):
+    img1_np = img1.detach().cpu().numpy()
+    img2_np = img2.detach().cpu().numpy()
+    img1_np = img1_np.swapaxes(1,2).swapaxes(2,3)
+    img2_np = img2_np.swapaxes(1,2).swapaxes(2,3)
+    scc = fr.scc(img1_np[0,:,:,:], img2_np[0,:,:,:])
+    return scc
 
 class AverageMeter(object):
     def __init__(self):
