@@ -1,5 +1,5 @@
 # SRCNN for Sentinel-2
-This repository is forked from https://github.com/yjn870/SRCNN-pytorch and was changed for Sentinel-2 satellite images. 
+This repository is forked from https://github.com/yjn870/SRCNN-pytorch and was changed for Sentinel-2 satellite images. Only RGB channels were used and super-resolution was made from 20m to 10m.
 
 # SRCNN
 
