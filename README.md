@@ -1,3 +1,6 @@
+# SRCNN for Sentinel-2
+This repository is forked from https://github.com/yjn870/SRCNN-pytorch and was changed for Sentinel-2 satellite images. 
+
 # SRCNN
 
 This repository is implementation of the ["Image Super-Resolution Using Deep Convolutional Networks"](https://arxiv.org/abs/1501.00092).
