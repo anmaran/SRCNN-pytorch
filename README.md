@@ -5,6 +5,7 @@ The following changes have been made:
 - RGB channels instead of YCbCr
 - 16-bit instead 8-bit
 - residual connection was added to the model
+
 For Sentinel-2 RGB compositions use version with MB/MB16 prefix. 
 
 
