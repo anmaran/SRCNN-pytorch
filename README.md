@@ -1,5 +1,12 @@
 # SRCNN for Sentinel-2
 This repository is forked from [yjn870/SRCNN-pytorch](https://github.com/yjn870/SRCNN-pytorch) and was changed for Sentinel-2 satellite images. Only RGB channels were used and super-resolution was made from 20m to 10m.
+Examples of data on which the model was trained is in: data/S2 Samples. Weights are in: weights/epoch_199.pth.
+The following changes have been made:
+- RGB channels instead of YCbCr
+- 16-bit instead 8-bit
+- residual connection was added to the model
+For Sentinel-2 RGB compositions use version with MB/MB16 prefix. 
+
 
 # SRCNN
 
